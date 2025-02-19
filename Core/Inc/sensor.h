@@ -15,7 +15,7 @@ extern ADC_HandleTypeDef hadc1;
 extern ADC_HandleTypeDef hadc2;
 
 
-/*
+/*//////
  * Defines for sensors channels
  */
 #define SENSOR_LEFT 			&hadc1
