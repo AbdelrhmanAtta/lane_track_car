@@ -49,8 +49,8 @@ int sensor_read(ADC_HandleTypeDef *hadc);
 //separate functions
 //lw 2l 1000-> white  zad alf  1000->black &delay 1 milli
 
-sensor_trigger_t sensor_trigger_left();
+sensor_trigger_t sensor_trigger();
 
-sensor_trigger_t sensor_trigger_right();
+
 
 #endif /* INC_SENSOR_H_ */
