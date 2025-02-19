@@ -15,10 +15,33 @@ int sensor_read(ADC_HandleTypeDef *hadc){
 }
 
 
-int sensor_trigger_left(){
+sensor_trigger_t sensor_trigger(){
+	static int prev_reading_left=sensor_read(SENSOR_LEFT);
+	static int prev_reading_right=sensor_read(SENSOR_RIGHT);
+
+	if((SENSOR_LEFT>(prev_reading_left+1000))&&(SENSOR_RIGHT>(prev_reading_right+1000))){  /*Left sensor and Right sensor
+																							detected dark material(line)*/
+		prev_reading_left=sensor_read(SENSOR_LEFT);
+		prev_reading_right=sensor_read(SENSOR_RIGHT);
+		return R_BOTH_DETECTED;
+	}
+	else if((SENSOR_LEFT>(prev_reading_left+1000))&&(SENSOR_RIGHT<(prev_reading_right+1000))){/*Left sensor ONLY
+																							detected dark material(line)*/
+		prev_reading_left=sensor_read(SENSOR_LEFT);
+		prev_reading_right=sensor_read(SENSOR_RIGHT);
+		return R_LEFT_DETECTED;
+	}
+	else if((SENSOR_LEFT<(prev_reading_left+1000))&&(SENSOR_RIGHT>(prev_reading_right+1000))){/*Right sensor ONLY
+																								detected dark material(line)*/
+			prev_reading_left=sensor_read(SENSOR_LEFT);
+			prev_reading_right=sensor_read(SENSOR_RIGHT);
+			return R_RIGHT_DETECTED;
+		}
+	else{
+		prev_reading_left=sensor_read(SENSOR_LEFT);
+		prev_reading_right=sensor_read(SENSOR_RIGHT);
+		return R_NOT_ON_LINE;
+	}
 
 }
 
-int sensor_trigger_right(){
-
-}
