@@ -36,6 +36,8 @@ void sensor_init();
 int sensor_read(int pin);
 
 // 7oto sensor_trigger_left w sensor_trigger_right (output 1 lw only one pin et2ra) w sensor_triggered_both (lw 2 pins) 3shan mksl :)
+//separate functions
+//lw 2l 1000-> white  zad alf  1000->black &delay 1 milli
 
 
 #endif /* INC_SENSOR_H_ */
