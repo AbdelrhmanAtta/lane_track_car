@@ -12,3 +12,12 @@ int sensor_read(int pin){
 	reading = HAL_ADC_GetValue(pin);
 	return reading;
 }
+
+
+int sensor_trigger_left(){
+
+}
+
+int sensor_trigger_right(){
+
+}

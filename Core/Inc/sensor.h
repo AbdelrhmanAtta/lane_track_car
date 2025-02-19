@@ -39,5 +39,8 @@ int sensor_read(int pin);
 //separate functions
 //lw 2l 1000-> white  zad alf  1000->black &delay 1 milli
 
+int sensor_trigger_left();
+
+int sensor_trigger_right();
 
 #endif /* INC_SENSOR_H_ */
