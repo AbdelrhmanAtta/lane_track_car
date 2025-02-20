@@ -45,9 +45,11 @@ void sensor_init();
  */
 int sensor_read(ADC_HandleTypeDef *hadc);
 
-// 7oto sensor_trigger_left w sensor_trigger_right (output 1 lw only one pin et2ra) w sensor_triggered_both (lw 2 pins) 3shan mksl :)
-//separate functions
-//lw 2l 1000-> white  zad alf  1000->black &delay 1 milli
+/*
+ * @brief: Detects if car is on line
+ * @param: none
+ * @return: Car touching line status
+ */
 
 sensor_trigger_t sensor_trigger();
 
