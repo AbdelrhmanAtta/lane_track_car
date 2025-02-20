@@ -15,38 +15,36 @@ int sensor_read(ADC_HandleTypeDef *hadc){
 }
 
 
-sensor_trigger_t sensor_trigger(){
-	static int prev_reading_left=0;
-	static int prev_reading_right=0;
+sensor_trigger_t sensor_trigger() {
+    static int prev_reading_left = 1000;
+    static int prev_reading_right = 1000;
 
-	prev_reading_left=sensor_read(SENSOR_LEFT);
-	prev_reading_right=sensor_read(SENSOR_RIGHT);
+    int current_reading_left = sensor_read(SENSOR_LEFT);
+    int current_reading_right = sensor_read(SENSOR_RIGHT);
 
-	sensor_trigger_t res;
+    static sensor_trigger_t sensor_trigger = R_NOT_ON_LINE;
 
-	if((SENSOR_LEFT>(prev_reading_left+1000))&&(SENSOR_RIGHT>(prev_reading_right+1000))){  /*Left sensor and Right sensor
-																							detected dark material(line)*/
-		prev_reading_left=sensor_read(SENSOR_LEFT);
-		prev_reading_right=sensor_read(SENSOR_RIGHT);
-		res= R_BOTH_DETECTED;
-	}
-	else if((SENSOR_LEFT>(prev_reading_left+1000))&&(SENSOR_RIGHT<(prev_reading_right+1000))){/*Left sensor ONLY
-																							detected dark material(line)*/
-		prev_reading_left=sensor_read(SENSOR_LEFT);
-		prev_reading_right=sensor_read(SENSOR_RIGHT);
-		res= R_LEFT_DETECTED;
-	}
-	else if((SENSOR_LEFT<(prev_reading_left+1000))&&(SENSOR_RIGHT>(prev_reading_right+1000))){/*Right sensor ONLY
-																								detected dark material(line)*/
-			prev_reading_left=sensor_read(SENSOR_LEFT);
-			prev_reading_right=sensor_read(SENSOR_RIGHT);
-			res= R_RIGHT_DETECTED;
-		}
-	else{
-		prev_reading_left=sensor_read(SENSOR_LEFT);
-		prev_reading_right=sensor_read(SENSOR_RIGHT);
-		res= R_NOT_ON_LINE;
-	}
-	return res;
+    if ((current_reading_left > (prev_reading_left + 1000)) && (current_reading_right > (prev_reading_right + 1000))) {
+        sensor_trigger = R_BOTH_DETECTED;
+    }
+    else if (current_reading_left > (prev_reading_left + 1000)) {
+        sensor_trigger = R_LEFT_DETECTED;
+    }
+    else if (current_reading_right > (prev_reading_right + 1000)) {
+        sensor_trigger = R_RIGHT_DETECTED;
+    }
+    else if (current_reading_right < (prev_reading_right - 1000)) {
+        sensor_trigger = R_NOT_ON_LINE;
+    }
+    else if (current_reading_left < (prev_reading_left - 1000)) {
+        sensor_trigger = R_NOT_ON_LINE;
+    }
+
+
+    // Update previous readings
+    prev_reading_left = current_reading_left;
+    prev_reading_right = current_reading_right;
+
+
+    return sensor_trigger;
 }
-
