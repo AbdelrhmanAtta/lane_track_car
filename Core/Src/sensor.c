@@ -2,7 +2,7 @@
  * sensor.c
  *
  *  Created on: Feb 19, 2025
- *      Author: Mariam
+ *      Author: Mariam , Nancy Ashraf
  */
 #include "sensor.h"
 
