@@ -22,7 +22,8 @@ int sensor_read(ADC_HandleTypeDef *hadc)
 
 
 
-sensor_trigger_t sensor_trigger() {
+sensor_trigger_t sensor_trigger()
+{
     static int prev_reading_left = 1000;
     static int prev_reading_right = 1000;
 
@@ -43,6 +44,7 @@ sensor_trigger_t sensor_trigger() {
     prev_reading_left = current_reading_left;
     prev_reading_right = current_reading_right;
 
+    
     return R_NOT_ON_LINE;
 
 }
