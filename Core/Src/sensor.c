@@ -22,24 +22,20 @@ int sensor_read(ADC_HandleTypeDef *hadc)
 
 
 
-sensor_trigger_t sensor_trigger(int right_value, int left_value)
-{
+sensor_trigger_t sensor_trigger() {
     static int prev_reading_left = 1000;
     static int prev_reading_right = 1000;
 
-    int current_reading_right = right_value;
-    int current_reading_left = left_value;
+    int current_reading_left = sensor_read(SENSOR_LEFT);
+    int current_reading_right = sensor_read(SENSOR_RIGHT);
 
-    if ((current_reading_left > (prev_reading_left + 1000)) && (current_reading_right > (prev_reading_right + 1000)))
-    {
+    if ((current_reading_left > (prev_reading_left + 1000)) && (current_reading_right > (prev_reading_right + 1000))) {
     	return R_BOTH_DETECTED;
     }
-    else if (current_reading_left > (prev_reading_left + 1000))
-    {
+    else if (current_reading_left > (prev_reading_left + 1000)) {
     	return R_LEFT_DETECTED;
     }
-    else if (current_reading_right > (prev_reading_right + 1000))
-    {
+    else if (current_reading_right > (prev_reading_right + 1000)) {
     	return R_RIGHT_DETECTED;
     }
 
