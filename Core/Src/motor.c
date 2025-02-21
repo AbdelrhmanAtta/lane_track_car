@@ -46,7 +46,28 @@ void motor_init()
  * @param: speed as PWM signal (from 0 to 1023).
  * @return: void (change if needed later)
  */
-void motor_forward_speed(uint16_t speed);
+void motor_forward_speed(uint16_t speed) 
+{
+    if (speed > 1000)
+    {
+        speed = 1000;
+    }
+
+        TIM_HandleTypeDef pwm_timer2;  
+        TIM_OC_InitTypeDef my_pwm = { 0 };
+
+         
+        my_pwm.OCMode = TIM_OCMODE_PWM1;
+        my_pwm.Pulse = speed; 
+        my_pwm.OCPolarity = TIM_OCPOLARITY_HIGH;
+
+
+        HAL_TIM_PWM_ConfigChannel(&pwm_timer2, &my_pwm, TIM_CHANNEL_3);
+        HAL_TIM_PWM_Start(&pwm_timer2, TIM_CHANNEL_3);
+
+
+
+}
 
 /*
  * @brief: Controls each motor separately, almost like motor_forward_speed but takes angle not PWM, change to PWM if more readable.
