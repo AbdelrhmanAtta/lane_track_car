@@ -2,8 +2,7 @@
  * motor.h
  *
  *  Created on: Feb 19, 2025
- *      Author: 										lw esht8lt ektb esmk hna
- *      Sub-Author: A.Atta
+ *      Author: A.Atta
  */
 
 #ifndef INC_MOTOR_H_
@@ -11,11 +10,6 @@
 
 #include "main.h"
 
-/*
- * Defines for motors pins
- */
-#define MOTOR_LEFT_PIN
-#define MOTOR_RIGHT_PIN
 
 extern TIM_HandleTypeDef htim2;
 
@@ -32,14 +26,14 @@ void motor_init();
  * @param: speed as PWM signal (from 0 to 1023).
  * @return: void (change if needed later)
  */
-void motor_forward_speed(uint16_t speed);
+void motor_forward_speed(uint16_t speed) ;
 
 /*
  * @brief: Controls each motor separately, almost like motor_forward_speed but takes angle not PWM, change to PWM if more readable.
  * @param: Left and Right angle to steer with (from 0 to 90).
  * @return: void (change if needed later)
  */
-void motors_steer(uint16_t, uint16_t);
+void motors_steer(uint16_t steer_left_angle, uint16_t steer_right_angle);
 
 
 
