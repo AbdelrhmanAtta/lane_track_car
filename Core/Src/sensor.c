@@ -30,13 +30,13 @@ sensor_trigger_t sensor_trigger()
     int current_reading_left = sensor_read(SENSOR_LEFT);
     int current_reading_right = sensor_read(SENSOR_RIGHT);
 
-    if ((current_reading_left > (prev_reading_left + 1000)) && (current_reading_right > (prev_reading_right + 1000))) {
+    if ((current_reading_left > (prev_reading_left*factor)) && (current_reading_right > (prev_reading_right*factor))) {
     	return R_BOTH_DETECTED;
     }
-    else if (current_reading_left > (prev_reading_left + 1000)) {
+    else if (current_reading_left > (prev_reading_left*factor)) {
     	return R_LEFT_DETECTED;
     }
-    else if (current_reading_right > (prev_reading_right + 1000)) {
+    else if (current_reading_right > (prev_reading_right*factor)) {
     	return R_RIGHT_DETECTED;
     }
 
