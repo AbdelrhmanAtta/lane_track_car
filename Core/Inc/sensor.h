@@ -26,7 +26,7 @@ extern ADC_HandleTypeDef hadc2;
 
 #define SENSOR_LEFT 			&hadc2
 #define SENSOR_RIGHT 			&hadc1
-
+#define factor                  1.2
 /*
  * Enum with return codes for trigger
  */
