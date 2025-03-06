@@ -2,7 +2,7 @@
  * motor.c
  *
  *  Created on: Feb 19, 2025
- *      Author: A.Atta & Beshoy Maher
+ *      Author: A.Atta
  */
 #include "motor.h"
 #include "main.h"
