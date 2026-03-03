@@ -12,7 +12,6 @@
   *           + Timer remapping capabilities configuration
   ******************************************************************************
   * @attention
-  *
   * Copyright (c) 2016 STMicroelectronics.
   * All rights reserved.
   *
